@@ -1,0 +1,13 @@
+<?php
+
+public function invoiceCustomers(array $customers) {
+    foreach($customers as $customer) {
+        $invoice = $this->invoiceFactory->create(
+            $customer,
+            $this->orderRepository->findByCustomer($customer),
+        );
+
+        $strategy = $this->deliveryMethodFactory->create($customer);
+        $strategy->send($invoice);
+    }
+}

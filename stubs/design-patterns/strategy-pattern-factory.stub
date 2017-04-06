@@ -1,0 +1,15 @@
+<?php
+
+class InvoiceDeliveryStrategyFactory {
+    public function create(Customer $customer) {
+        switch($customer->getDeliveryMethod()) {
+            case 'email':
+                return new EmailDeliveryStrategy();
+                break;
+            case 'print':
+            default:
+                return new PrintDeliveryStrategy();
+                break;
+        }
+    }
+}

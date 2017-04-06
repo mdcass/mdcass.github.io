@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * Interface definition
+ */
+interface InvoiceDeliveryInterface {
+    public function send(Invoice $invoice);
+}
+
+// Strategies
+class EmailDeliveryStrategy implements InvoiceDeliveryInterface {
+    public function send(Invoice $invoice) {
+        // Logic to send via email
+    }
+}
+
+class PrintDeliveryStrategy implements InvoiceDeliveryInterface {
+    public function send(Invoice $invoice) {
+        // Logic to print
+    }
+}

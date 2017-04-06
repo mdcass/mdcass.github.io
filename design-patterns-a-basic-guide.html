@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Design Patters, A Basic Guide | Mike Casson</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css" />
+    <!--[if lt IE 9]>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        body { padding-top: 70px; }
+        .CodeMirror {
+            border: 1px solid #eee;
+            height: auto;
+            max-height:200px;
+        }
+
+        .CodeMirror-scroll {
+            height: auto;
+            max-height:200px;
+        }
+    </style>
+</head>
+<body ng-app="PageApp">
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="design-patterns-a-basic-guide.html">Design Patterns, A Basic Guide</a>
+        </div>
+        <ul class="nav navbar-nav pull-right">
+            <li><a href="https://github.com/mdcass">Mike Casson</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container" ng-controller="PageController">
+    <div class="row">
+        <div class="col-md-12">
+            <p>Quick, dirty, and <strong>basic</strong> guide to design patterns in PHP, with a focus for the Laravel developer.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="page-header">Factory Pattern</h2>
+            <p><strong>Factories</strong> are objects that are responsible for creating other objects when needed.</p>
+            <h3>Simple Example</h3>
+            <p>Typical instantiation would look like:
+                <textarea ng-include="'stubs/design-patterns/factory-pattern-instantiate-customer.stub'" ui-codemirror ui-codemirror-opts="attrs.codeMirrorOpts"></textarea>
+            </p>
+            <p>We can move the business logic for creating new <code>Customer</code> objects to it's own class:
+                <textarea ng-include="'stubs/design-patterns/factory-pattern-simple-customer-factory.stub'" ui-codemirror ui-codemirror-opts="attrs.codeMirrorOpts"></textarea>
+            </p>
+            <h3>Benefits</h3>
+            <p>Benefits include <strong>reusable code</strong> for creating classes, conditional logic is <strong>easily testable</strong> in isolation, and <strong>easy to change</strong> the logic as it's all in one place.</p>
+            <h3>Static Classes</h3>
+            <p>You will often see factories set up with static methods for creating their class. For simple factories, there's no notable negatives for employing this method, however for more involved factories, especially those with dependencies, it can lead to some pretty smelly code.</p>
+            <h2 class="page-header">Repository Pattern</h2>
+            <p>A <strong>Repository</strong> is an object that allows for the retrieval and persisting of data to a data store. This pattern allows you to stop thinking of "querying the database", but instead think of retrieving data from the repository.</p>
+            <h3>Repositories & Laravel</h3>
+            <p>There are <a href="https://laracasts.com/discuss/channels/general-discussion/reasons-i-abondoned-repository-pattern-in-laravel" target="_blank">many</a>, <a href="https://laracasts.com/discuss/channels/eloquent/models-repository-pattern-and-eloquent" target="_blank">many</a> discussions on the use of repositories in Laravel. The general consensus seems to be it's not worth it on smaller projects, or larger projects where you're unlikely to swap out the underlying DB provider.</p>
+        </div>
+        <div class="col-md-6">
+            <h2 class="page-header">Adapter Pattern</h2>
+            <p>The <strong>Adapter Pattern</strong> allows for encapsulating the functionality of one object, and making it conform to the functionality of another object.</p>
+            <p>For example, we could define a <code>DistanceInterface</code>
+                <textarea ng-include="'stubs/design-patterns/adapter-pattern-distance-interface.stub'" ui-codemirror ui-codemirror-opts="attrs.codeMirrorOpts"></textarea>
+            </p>
+            <p>This would be used to create Adapters for third party providers, such as Google Maps:
+                <textarea ng-include="'stubs/design-patterns/adapter-pattern-walking-distance.stub'" ui-codemirror ui-codemirror-opts="attrs.codeMirrorOpts"></textarea>
+            </p>
+            <h2 class="page-header">Strategy Pattern</h2>
+            <p>The <strong>Strategy Pattern</strong> allows the behaviour of an algorithm to be determined at runtime. Strategies are usually a family of classes
+            which share a common interface, that each encapsulates separate interchangeable behaviour.</p>
+            <p>We could define an interface describing how invoices should be sent, then two classes which implements the interface:
+                <textarea ng-include="'stubs/design-patterns/strategy-pattern-invoice-interface.stub'" ui-codemirror ui-codemirror-opts="attrs.codeMirrorOpts"></textarea>
+            </p>
+            <p>We could then use the Factory Pattern to instantiate the correct strategy:
+                <textarea ng-include="'stubs/design-patterns/strategy-pattern-factory.stub'" ui-codemirror ui-codemirror-opts="attrs.codeMirrorOpts"></textarea>
+            </p>
+            <p>Which would neatly tie everything together:
+                <textarea ng-include="'stubs/design-patterns/strategy-pattern-complete.stub'" ui-codemirror ui-codemirror-opts="attrs.codeMirrorOpts"></textarea>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="page-header">Resources</h2>
+            <ul>
+                <li><a href="https://leanpub.com/cleanphp" target="_blank">The Clean Architecture in PHP</a></li>
+                <li><a href="http://designpatternsphp.readthedocs.io/en/latest/" target="_blank">DesignPatternsPHP</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/css/css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/htmlmixed/htmlmixed.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/clike/clike.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/php/php.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-codemirror/0.3.0/ui-codemirror.min.js"></script>
+
+<script type="text/javascript">
+    var app = angular.module('PageApp', ['ui.codemirror']);
+    app.controller('PageController', ['$scope', function($scope) {
+        $scope.attrs = {
+            codeMirrorOpts: {
+                lineWrap: true,
+                lineNumbers: true,
+                readOnly: 'nocursor',
+                mode: 'php'
+            }
+        };
+    }]);
+</script>
+</body>
+</html>
