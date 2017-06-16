@@ -1,0 +1,5 @@
+# good - imperative present tense, capitalized, fewer than 50 characters
+Mark huge records as obsolete when clearing hinting faults
+
+# bad
+fixed ActiveModel::Errors deprecation messages failing when AR was used outside of Rails.

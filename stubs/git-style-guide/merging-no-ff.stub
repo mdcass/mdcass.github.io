@@ -1,0 +1,5 @@
+# good - ensures that a merge commit is created
+$ git merge --no-ff my-branch
+
+# bad
+$ git merge my-branch

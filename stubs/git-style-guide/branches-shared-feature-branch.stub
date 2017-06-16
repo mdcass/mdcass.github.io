@@ -1,0 +1,3 @@
+$ git checkout -b oauth-migration-15/master # team-wide branch
+$ git checkout -b oauth-migration-15/maria  # Maria's personal branch
+$ git checkout -b oauth-migration-15/nick   # Nick's personal branch

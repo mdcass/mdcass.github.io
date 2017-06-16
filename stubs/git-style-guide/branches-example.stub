@@ -1,0 +1,5 @@
+# good
+$ git checkout -b oauth-migration
+
+# bad - too vague
+$ git checkout -b login_fix
