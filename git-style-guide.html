@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Git Style Guide | Mike Casson</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<!--[if lt IE 9]>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
+	<![endif]-->
+
+	<style type="text/css">
+		body {
+			padding-top: 70px;
+			font-size: 14px;
+		}
+
+		.panel > .panel-heading {
+			padding: 7px 15px;
+		}
+		.panel > .panel-body {
+			padding: 7px;
+		}
+
+		.panel > .panel-body > ul {
+			padding-left: 20px;
+		}
+
+		.panel > .panel-body > p {
+			margin: 0 0 0 7.5px;
+		}
+
+		.CodeMirror {
+			border: 1px solid #eee;
+			height: auto;
+			max-height:200px;
+		}
+
+		.CodeMirror-scroll {
+			height: auto;
+			max-height:200px;
+		}
+	</style>
+</head>
+<body ng-app="PageApp">
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="design-patterns-a-basic-guide.html">Git Style Guide</a>
+		</div>
+		<ul class="nav navbar-nav pull-right">
+			<li><a href="https://github.com/mdcass">Mike Casson</a></li>
+		</ul>
+	</div>
+</nav>
+<div class="container" ng-controller="PageController">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="panel panel-default">
+				<div class="panel-heading"><i class="fa fa-commenting-o"></i> Semantic Commit Messages</div>
+				<div class="panel-body">
+					<samp>
+						&lt;type&gt;: summary in present tense
+					</samp>
+					<p><strong>Types</strong></p>
+					<ul>
+						<li><strong>Feat</strong> - new feature</li>
+						<li><strong>Feat-wip</strong> - work in progress towards feature (reference issue)</li>
+						<li><strong>Fix</strong> - bug fix</li>
+						<li><strong>Docs</strong> - changes to documentation</li>
+						<li><strong>Style</strong> - formatting, missing semi colons, etc; no code change</li>
+						<li><strong>Refactor</strong> - refactoring production code</li>
+						<li><strong>Test</strong> - adding missing tests, refactoring tests; no production code change</li>
+						<li><strong>Chore</strong> - updating grunt tasks etc; no production code change</li>
+						<li><strong>Content</strong> - updating arbitrary content (HTML)</li>
+					</ul>
+					<p><strong>Message summary and body</strong> should be in present tense</p>
+					<p><strong>Message footer</strong> should reference issues (e.g. <code>Closes #123, #456</code> or <code>WIP #123</code></p>
+					<p><strong>Breaking changes</strong> should be mentioned in the footer with a <em>description</em> of the change, <em>justification</em>, and <em>migration notes</em></p>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading"><i class="fa fa-terminal"></i> Commits</div>
+				<div class="panel-body">
+					<ul>
+						<li>Each commit should be a single <em>logical change</em>.</li>
+						<li>Don't split a signle logical change into several commits. For example, an implementation and the corresponding tests should be in the same commit.</li>
+						<li>Commit <em>early</em> and <em>often</em>. Small, self-contained commits are easier to understand and revert when something goes wrong.</li>
+						<li>Commits should be ordered <em>logically</em>. For example, if <em>commit X</em> depends on changes done in <em>commit Y</em>, then <em>commit Y</em> should come before <em>commit X</em>.</li>
+					</ul>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading"><i class="fa fa-pencil-square-o"></i> Misc</div>
+				<div class="panel-body">
+					<ul>
+						<li>
+							There are various workflows and each one has its strengths and weaknesses.
+							Whether a workflow fits your case, depends on the team, the project and your
+							development procedures.
+
+							That said, it is important to actually <em>choose</em> a workflow and stick with it.
+						</li>
+						<li>
+							<em>Be consistent.</em> This is related to the workflow but also expands to things
+							like commit messages, branch names and tags. Having a consistent style
+							throughout the repository makes it easy to understand what is going on by
+							looking at the log, a commit message etc.
+						</li>
+						<li>
+							<em>Test before you push.</em> Do not push half-done work.
+						</li>
+						<li>
+							Use <a href="http://git-scm.com/book/en/v2/Git-Basics-Tagging#Annotated-Tags" target="_blank">annotated tags</a>
+							for marking releases or other important points in the history. Prefer
+							<a href="http://git-scm.com/book/en/v2/Git-Basics-Tagging#Lightweight-Tags" target="_blank">lightweight tags</a>
+							for personal use, such as to bookmark commits for future reference.
+						</li>
+						<li>
+							Keep your repositories at a good shape by performing maintenance tasks
+							occasionally:
+							<ul>
+								<li><a href="http://git-scm.com/docs/git-gc" target="_blank"><code>git-gc(1)</code></a></li>
+								<li><a href="http://git-scm.com/docs/git-prune" target="_blank"><code>git-prune(1)</code></a></li>
+								<li><a href="http://git-scm.com/docs/git-fsck" target="_blank"><code>git-fsck(1)</code></a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading"><i class="fa fa-book"></i> Resources</div>
+				<div class="panel-body">
+					<p>A Git Style Guide prettified from <code><a href="https://github.com/agis/git-style-guide" target="_blank">agis/git-style-guide</a></code></p>
+					<ul>
+						<li><a href="https://seesparkbox.com/foundry/semantic_commit_messages" target="_blank">Semantic Commit Messages</a></li>
+						<li><a href="http://karma-runner.github.io/0.10/dev/git-commit-msg.html" target="_blank">Karma Commit Messages</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<div class="panel panel-default">
+				<div class="panel-heading"><i class="fa fa-code-fork"></i> Branches</div>
+				<div class="panel-body">
+					<ul>
+						<li>
+							Choose <em>short</em> and <em>descriptive</em> names
+							<textarea ng-include="'stubs/git-style-guide/branches-example.stub'" ui-codemirror ui-codemirror-opts="attrs.codeMirrorOpts"></textarea>
+						</li>
+						<li>
+							Add identifiers from corresponding tickets in an external service
+							<textarea ng-include="'stubs/git-style-guide/branches-external-service.stub'" ui-codemirror ui-codemirror-opts="attrs.codeMirrorOpts"></textarea>
+						</li>
+						<li>Use <em>dashes</em> to separate words</li>
+						<li>
+							When several people are working on the <em>same</em> feature, it may be convenient to have <em>personal</em> feature branches and a <em>team-wide</em> feature branch
+							<textarea ng-include="'stubs/git-style-guide/branches-shared-feature-branch.stub'" ui-codemirror ui-codemirror-opts="attrs.codeMirrorOpts"></textarea>
+							Merge at will the personal branches to the team-wide branch (see "Merging"). Eventually, the team-wide branch will be merged to "master".
+						</li>
+						<li>Delete your branch from the upstream repository after it's merged, unless there is a specific reason not to</li>
+					</ul>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading"><i class="fa fa-compress"></i> Merging</div>
+				<div class="panel-body">
+					<ul>
+						<li><strong>Do not rewrite published history.</strong> The repository's history is valuable in
+							its own right and it is very important to be able to tell <em>what actually
+								happened</em>. Altering published history is a common source of problems for
+							anyone working on the project.
+
+							However, there are cases where rewriting history is legitimate. These are
+							when:
+							<ul>
+								<li>
+									You are the only one working on the branch and it is not being reviewed.
+								</li>
+								<li>
+									You want to tidy up your branch (eg. squash commits) and/or rebase it onto
+									the "master" in order to merge it later.
+								</li>
+							</ul>
+							That said, <em>never rewrite the history of the "master" branch</em> or any other
+							special branches (ie. used by production or CI servers).
+						</li>
+						<li>
+							Keep the history <em>clean</em> and <em>simple</em>. <em>Just before you merge</em> your branch:
+							<ol>
+								<li>
+									Make sure it conforms to the style guide and perform any needed actions
+									if it doesn't (squash/reorder commits, reword messages etc.)
+								</li>
+								<li>
+									Rebase it onto the branch it's going to be merged to:
+									<textarea ng-include="'stubs/git-style-guide/merging-rebase.stub'" ui-codemirror ui-codemirror-opts="attrs.codeMirrorOpts"></textarea>
+								</li>
+								<li>
+									If your branch includes more than one commit, do not merge with a
+									fast-forward:
+									<textarea ng-include="'stubs/git-style-guide/merging-no-ff.stub'" ui-codemirror ui-codemirror-opts="attrs.codeMirrorOpts"></textarea>
+								</li>
+							</ol>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading"><i class="fa fa-comments-o"></i> Messages Continued</div>
+				<div clsss="panel-body">
+					<ul>
+						<li>
+							Use the editor, not the terminal, when writing a commit message to avoid encouraging the mindset of
+							trying to fit everything on one line which usually results in non-informative, ambiguous commit messages.
+							<textarea ng-include="'stubs/git-style-guide/messages-editor.stub'" ui-codemirror ui-codemirror-opts="attrs.codeMirrorOpts"></textarea>
+						</li>
+						<li>The summary line should follow the format of <em>semantic commit messages</em> as described above.</li>
+						<li>
+							The summary line (ie. the first line of the message) should be <em>descriptive</em> yet <em>succinct</em>. Ideally, it should be no longer than <em>50 characters</em>. It should be capitalized and written in imperative present tense. It should not end with a period since it is effectively the commit title.
+							<textarea ng-include="'stubs/git-style-guide/messages-summary-line.stub'" ui-codemirror ui-codemirror-opts="attrs.codeMirrorOpts"></textarea>
+						</li>
+						<li>After that should come a blank line followed by a more thorough description. It should be wrapped to <em>72 characters</em> and explain why the change is needed, how it addresses the issue and what side-effects it might have.
+
+							It should also provide any pointers to related resources (eg. link to the corresponding issue in a bug tracker)
+
+							<textarea ng-include="'stubs/git-style-guide/messages-description.stub'" ui-codemirror ui-codemirror-opts="attrs.codeMirrorOpts"></textarea>
+
+							Ultimately, when writing a commit message, think about what you would need to know if you run across the commit in a year from now.
+						</li>
+						<li>
+							If a <em>commit A</em> depends on <em>commit B</em>, the dependency should be stated in the message of <em>commit A</em>. Use the SHA1 when referring to commits.
+
+							Similarly, if <em>commit A</em> solves a bug introduced by <em>commit B</em>, it should also be stated in the message of <em>commit A</em>.
+						</li>
+						<li>
+							If a commit is going to be squashed to another commit use the <code>--squash</code> and <code>--fixup</code> flags respectively, in order to make the intention clear:
+							<textarea ng-include="'stubs/git-style-guide/messages-squash.stub'" ui-codemirror ui-codemirror-opts="attrs.codeMirrorOpts"></textarea>
+							<em>(Tip: Use the <code>--autosquash</code> flag when rebasing. The marked commits will be squashed automatically.)</em>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/mode/shell/shell.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-codemirror/0.3.0/ui-codemirror.min.js"></script>
+
+<script type="text/javascript">
+	var app = angular.module('PageApp', ['ui.codemirror']);
+	app.controller('PageController', ['$scope', function($scope) {
+		$scope.attrs = {
+			codeMirrorOpts: {
+				lineWrap: true,
+				lineNumbers: false,
+				readOnly: 'nocursor',
+				mode: 'shell'
+			}
+		};
+	}]);
+</script>
+</body>
+</html>

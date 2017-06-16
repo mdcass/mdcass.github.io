@@ -1,0 +1,5 @@
+# good
+$ git commit
+
+# bad
+$ git commit -m "Quick fix"
